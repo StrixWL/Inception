@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+  mariadb:
+    container_name: mariadb
+    build: ./MariaDB
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadbvol:/var/lib/mysql
+    networks:
+      - mok
+
+  wordpress:
+    container_name: wordpress
+    build: ./WordPress
+    ports:
+      - "9000:9000"
+    volumes:
+      - wordpressvol:/var/www/html
+    networks:
+      - mok
+    depends_on:
+      - mariadb
+
+  nginx:
+    container_name: nginx
+    build: ./NGINX
+    ports:
+      - "80:80"
+    volumes:
+      - wordpressvol:/var/www/html
+    networks:
+      - mok
+    depends_on:
+      - wordpress
+
+  minecraft:
+    container_name: minecraft
+    build: ./minecraft
+    ports:
+      - "25565:25565"
+
+  website:
+    container_name: website
+    build: ./website
+    ports:
+      - "8080:8080"
+
+volumes:
+  wordpressvol:
+  mariadbvol:
+
+networks:
+  mok:

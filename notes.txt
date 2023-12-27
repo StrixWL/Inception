@@ -1,0 +1,16 @@
+SQL {
+    primary key -> unique identifier (and its a column)
+
+    foreign key -> a way to define relationships between tables (and is just a primary key of another (or same) table)
+
+    composite key -> primary key will consist of one column, composite key will consist of two or more columns
+}
+
+NGINX {
+
+    global config file: /etc/nginx/nginx.conf
+
+    CONTEXT -> scopes {}
+    DIRECTIVES -> specific configuration option (name value;)
+}
+

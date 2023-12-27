@@ -1,0 +1,18 @@
+server {
+	listen 80;
+
+    root   /var/www/html/wordpress;
+    index  index.php;
+
+
+    location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass wordpress:9000;
+    }
+
+	location = /strix/ {
+		add_header Content-Type application/json;
+		add_header Set-Cookie 'auth=123';
+		return 200 '{"name": "stex"}';
+	}
+}

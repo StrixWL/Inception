@@ -1,0 +1,7 @@
+server {
+	listen 8080;
+
+    root   /var/www/html/website;
+    index  index.html;
+
+}
